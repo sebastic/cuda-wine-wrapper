@@ -88,8 +88,9 @@
 @ stdcall __cudaRegisterFatBinary( ptr ) wine_cudaRegisterFatBinary
 @ stdcall __cudaRegisterFunction( ptr ptr ptr ptr long ptr ptr ptr ptr ptr ) wine_cudaRegisterFunction
 @ stdcall __cudaRegisterVar( ptr ptr ptr ptr long long long long ) wine_cudaRegisterVar
-@ stdcall __cudaRegisterShared( ptr ptr ) wine_cudaRegisterShared
-@ stdcall __cudaRegisterSharedVar( ptr ptr long long long ) wine_cudaRegisterSharedVar
+# cudaRegisterShared* removed in CUDA 4.2
+#@ stdcall __cudaRegisterShared( ptr ptr ) wine_cudaRegisterShared
+#@ stdcall __cudaRegisterSharedVar( ptr ptr long long long ) wine_cudaRegisterSharedVar
 @ stdcall __cudaUnregisterFatBinary( ptr ) wine_cudaUnregisterFatBinary
 
 

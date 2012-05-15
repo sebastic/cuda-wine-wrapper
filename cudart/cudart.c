@@ -1067,6 +1067,7 @@ void WINAPI wine_cudaRegisterTexture( void **fatCubinHandle, const struct textur
 	return __cudaRegisterTexture( fatCubinHandle, hostVar, deviceAddress, deviceName, dim, norm, ext );
 }
 
+/* Removed in CUDA 4.2
 void WINAPI wine_cudaRegisterShared( void **fatCubinHandle, void **devicePtr ) {
 	WINE_TRACE("\n");
 	return __cudaRegisterShared( fatCubinHandle, devicePtr );
@@ -1076,6 +1077,7 @@ void WINAPI wine_cudaRegisterSharedVar(void **fatCubinHandle, void **devicePtr, 
 	WINE_TRACE("\n");
 	return __cudaRegisterSharedVar( fatCubinHandle, devicePtr, size, alignment, storage);
     }
+ */
 
 
 void WINAPI wine_cudaRegisterFunction( void **fatCubinHandle, const char *hostFun, char *deviceFun, const char *deviceName, int thread_limit, uint3 *tid, uint3 *bid, dim3 *bDim, dim3 *gDim, int *wSize ) {
