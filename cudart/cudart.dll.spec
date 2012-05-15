@@ -95,10 +95,12 @@
 
 
 #New to cuda 3.0
-@ stdcall __cudaMutexOperation( long ) wine_cudaMutexOperation
+# removed in CUDA 4.2
+#@ stdcall __cudaMutexOperation( long ) wine_cudaMutexOperation
 @ stdcall __cudaRegisterTexture( ptr ptr ptr ptr long long long ) wine_cudaRegisterTexture
-@ stdcall __cudaSynchronizeThreads( ) wine_cudaSynchronizeThreads
-@ stdcall __cudaTextureFetch( ptr ptr long ptr) wine_cudaTextureFetch
+# removed in CUDA 4.2
+#@ stdcall __cudaSynchronizeThreads( ) wine_cudaSynchronizeThreads
+#@ stdcall __cudaTextureFetch( ptr ptr long ptr) wine_cudaTextureFetch
 @ stdcall cudaBindTexture2D( ptr ptr ptr ptr long long long ) wine_cudaBindTexture2D
 @ stdcall cudaCreateChannelDesc( long long long long long ) wine_cudaCreateChannelDesc
 @ stdcall cudaDriverGetVersion( ptr ) wine_cudaDriverGetVersion
