@@ -127,3 +127,44 @@
 @ stdcall cudaSetDoubleForHost( ptr ) wine_cudaSetDoubleForHost
 @ stdcall cudaSetValidDevices( ptr long ) wine_cudaSetValidDevices
 #@ stdcall cudaWGLGetDevice( ptr long ) wine_cudaWGLGetDevice
+
+#New to cuda 4.2
+@  stdcall cudaDeviceReset(  ) wine_cudaDeviceReset
+@  stdcall cudaDeviceSynchronize(  ) wine_cudaDeviceSynchronize
+@  stdcall cudaDeviceSetLimit( long long ) wine_cudaDeviceSetLimit
+@  stdcall cudaDeviceGetLimit( ptr long ) wine_cudaDeviceGetLimit
+@  stdcall cudaDeviceGetCacheConfig( ptr ) wine_cudaDeviceGetCacheConfig
+@  stdcall cudaDeviceSetCacheConfig( long ) wine_cudaDeviceSetCacheConfig
+@  stdcall cudaDeviceGetSharedMemConfig( ptr ) wine_cudaDeviceGetSharedMemConfig
+@  stdcall cudaDeviceSetSharedMemConfig( long ) wine_cudaDeviceSetSharedMemConfig
+@  stdcall cudaDeviceGetByPCIBusId( ptr ptr ) wine_cudaDeviceGetByPCIBusId
+@  stdcall cudaDeviceGetPCIBusId( ptr long long ) wine_cudaDeviceGetPCIBusId
+@  stdcall cudaIpcOpenEventHandle( ptr long ) wine_cudaIpcOpenEventHandle
+@  stdcall cudaIpcGetMemHandle( ptr ptr ) wine_cudaIpcGetMemHandle
+@  stdcall cudaIpcOpenMemHandle( ptr long long ) wine_cudaIpcOpenMemHandle
+@  stdcall cudaIpcCloseMemHandle( ptr ) wine_cudaIpcCloseMemHandle
+@  stdcall cudaThreadSetLimit( long long ) wine_cudaThreadSetLimit
+@  stdcall cudaThreadGetLimit( ptr long ) wine_cudaThreadGetLimit
+@  stdcall cudaThreadGetCacheConfig( ptr ) wine_cudaThreadGetCacheConfig
+@  stdcall cudaThreadSetCacheConfig( long ) wine_cudaThreadSetCacheConfig
+@  stdcall cudaPeekAtLastError(  ) wine_cudaPeekAtLastError
+@  stdcall cudaStreamWaitEvent( long long long ) wine_cudaStreamWaitEvent
+@  stdcall cudaFuncSetSharedMemConfig( ptr long ) wine_cudaFuncSetSharedMemConfig
+@  stdcall cudaHostRegister( ptr long long ) wine_cudaHostRegister
+@  stdcall cudaHostUnregister( ptr ) wine_cudaHostUnregister
+@  stdcall cudaHostGetDevicePointer( ptr ptr long ) wine_cudaHostGetDevicePointer
+@  stdcall cudaMemcpy3DPeer( ptr ) wine_cudaMemcpy3DPeer
+@  stdcall cudaMemcpy3DPeerAsync( ptr long ) wine_cudaMemcpy3DPeerAsync
+@  stdcall cudaArrayGetInfo( ptr ptr ptr ptr ) wine_cudaArrayGetInfo
+@  stdcall cudaMemcpyPeer( ptr long ptr long long ) wine_cudaMemcpyPeer
+@  stdcall cudaMemcpyPeerAsync( ptr long ptr long long long ) wine_cudaMemcpyPeerAsync
+@  stdcall cudaMemsetAsync( ptr long long long ) wine_cudaMemsetAsync
+@  stdcall cudaMemset2DAsync( ptr long long long long long ) wine_cudaMemset2DAsync
+@  stdcall cudaMemset3DAsync( long long long long ) wine_cudaMemset3DAsync
+@  stdcall cudaPointerGetAttributes( ptr ptr ) wine_cudaPointerGetAttributes
+@  stdcall cudaDeviceCanAccessPeer( ptr long long ) wine_cudaDeviceCanAccessPeer
+@  stdcall cudaDeviceEnablePeerAccess( long long ) wine_cudaDeviceEnablePeerAccess
+@  stdcall cudaDeviceDisablePeerAccess( long ) wine_cudaDeviceDisablePeerAccess
+@  stdcall cudaBindSurfaceToArray( ptr ptr ptr ) wine_cudaBindSurfaceToArray
+@  stdcall cudaGetSurfaceReference( ptr ptr ) wine_cudaGetSurfaceReference
+@  stdcall cudaGetExportTable( ptr ptr ) wine_cudaGetExportTable

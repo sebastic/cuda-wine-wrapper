@@ -108,96 +108,61 @@ BOOL WINAPI DllMain(HINSTANCE hInstDLL, DWORD fdwReason, LPVOID lpv)
     }
 
 
-
 /*******************************************************************************
 *                                                                              *
 *             cuda_runtime_api.h                                               *
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaMalloc3D( struct cudaPitchedPtr* pitchDevPtr, struct cudaExtent extent ){
+cudaError_t WINAPI wine_cudaDeviceReset(void){
         WINE_TRACE("\n");
-	return cudaMalloc3D( pitchDevPtr, extent );
+        return cudaDeviceReset();
 }
 
-
-cudaError_t WINAPI wine_cudaMalloc3DArray( struct cudaArray** arrayPtr, const struct cudaChannelFormatDesc* desc, struct cudaExtent extent ){
+cudaError_t WINAPI wine_cudaDeviceSynchronize(void){
         WINE_TRACE("\n");
-	return cudaMalloc3DArray( arrayPtr, desc, extent );
+        return cudaDeviceSynchronize();
 }
 
-cudaError_t WINAPI wine_cudaMemset3D( struct cudaPitchedPtr pitchedDevPtr, int value, struct cudaExtent extent ){
-	WINE_TRACE("\n");
-	return cudaMemset3D( pitchedDevPtr, value, extent );
-}
-
-
-cudaError_t WINAPI wine_cudaMemcpy3D( const struct cudaMemcpy3DParms *p ){
+cudaError_t WINAPI wine_cudaDeviceSetLimit(enum cudaLimit limit, size_t value){
         WINE_TRACE("\n");
-	return cudaMemcpy3D( p );
+        return cudaDeviceSetLimit(limit, value);
 }
 
-cudaError_t WINAPI wine_cudaMemcpy3DAsync( const struct cudaMemcpy3DParms *p, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpy3DAsync( p, stream );
-}
-
-/*******************************************************************************
-*                                                                              *
-*             cuda_runtime_api.h                                               *
-*                                                                              *
-*******************************************************************************/
-
-cudaError_t WINAPI wine_cudaMalloc(void **devPtr, size_t size) {
+cudaError_t WINAPI wine_cudaDeviceGetLimit(size_t *pValue, enum cudaLimit limit){
         WINE_TRACE("\n");
-	return cudaMalloc(devPtr, size);
-    }
-
-cudaError_t WINAPI wine_cudaMallocHost( void** hostPtr, size_t size ){
-	WINE_TRACE("\n");
-	return cudaMallocHost( hostPtr, size);
+        return cudaDeviceGetLimit(pValue, limit);
 }
 
-cudaError_t WINAPI wine_cudaMallocPitch( void** devPtr, size_t* pitch, size_t widthInBytes, size_t height ){
-	WINE_TRACE("\n");
-	return cudaMallocPitch( devPtr, pitch, widthInBytes, height );
-}
-
-cudaError_t WINAPI wine_cudaMallocArray( struct cudaArray** array, const struct cudaChannelFormatDesc* desc, size_t width, size_t height ){
-	WINE_TRACE("\n");
-	return cudaMallocArray( array, desc, width, height);
-}
-
-
-cudaError_t WINAPI wine_cudaFree(void *devPtr) {
+cudaError_t WINAPI wine_cudaDeviceGetCacheConfig(enum cudaFuncCache *pCacheConfig){
         WINE_TRACE("\n");
-	return cudaFree(devPtr);
+        return cudaDeviceGetCacheConfig(pCacheConfig);
 }
 
-cudaError_t WINAPI wine_cudaFreeHost( void* hostPtr ){
-	WINE_TRACE("\n");
-	return cudaFreeHost( hostPtr);
+cudaError_t WINAPI wine_cudaDeviceSetCacheConfig(enum cudaFuncCache cacheConfig){
+        WINE_TRACE("\n");
+        return cudaDeviceSetCacheConfig(cacheConfig);
 }
 
-cudaError_t WINAPI wine_cudaFreeArray( struct cudaArray* array ){
-	WINE_TRACE("\n");
-	return cudaFreeArray( array );
+cudaError_t WINAPI wine_cudaDeviceGetSharedMemConfig(enum cudaSharedMemConfig *pConfig){
+        WINE_TRACE("\n");
+        return cudaDeviceGetSharedMemConfig(pConfig);
 }
 
-
-cudaError_t WINAPI wine_cudaHostAlloc(void **pHost, size_t bytes, unsigned int flags){
-	WINE_TRACE("\n");
-	return cudaHostAlloc( pHost, bytes, flags );
-}
-cudaError_t WINAPI wine_cudaHostGetDevicePointer(void **pDevice, void *pHost, unsigned int flags){
-	WINE_TRACE("\n");
-	return cudaHostGetDevicePointer( pDevice, pHost, flags );
-}
-cudaError_t WINAPI wine_cudaHostGetFlags(unsigned int *pFlags, void *pHost){
-	WINE_TRACE("\n");
-	return cudaHostGetFlags( pFlags, pHost );
+cudaError_t WINAPI wine_cudaDeviceSetSharedMemConfig(enum cudaSharedMemConfig config){
+        WINE_TRACE("\n");
+        return cudaDeviceSetSharedMemConfig(config);
 }
 
+cudaError_t WINAPI wine_cudaDeviceGetByPCIBusId(int *device, char *pciBusId){
+        WINE_TRACE("\n");
+        return cudaDeviceGetByPCIBusId(device, pciBusId);
+}
+
+cudaError_t WINAPI wine_cudaDeviceGetPCIBusId(char *pciBusId, int len, int device){
+        WINE_TRACE("\n");
+        return cudaDeviceGetPCIBusId(pciBusId, len, device);
+}
 
 
 /*******************************************************************************
@@ -206,108 +171,25 @@ cudaError_t WINAPI wine_cudaHostGetFlags(unsigned int *pFlags, void *pHost){
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaMemGetInfo(size_t *free, size_t *total){
-	WINE_TRACE("\n");
-	return cudaMemGetInfo( free, total );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy(void *dst, const void *src, size_t count, enum cudaMemcpyKind kind) {
+cudaError_t WINAPI wine_cudaIpcOpenEventHandle(cudaEvent_t *event, cudaIpcEventHandle_t handle){
         WINE_TRACE("\n");
-	return cudaMemcpy(dst, src, count, kind);
+        return cudaIpcOpenEventHandle(event, handle);
 }
 
-cudaError_t WINAPI wine_cudaMemcpyToArray( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t count, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpyToArray( dst, wOffset, hOffset, src, count, kind );
+cudaError_t WINAPI wine_cudaIpcGetMemHandle(cudaIpcMemHandle_t *handle, void *devPtr){
+        WINE_TRACE("\n");
+        return cudaIpcGetMemHandle(handle, devPtr);
 }
 
-cudaError_t WINAPI wine_cudaMemcpyFromArray( void *dst, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t count, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpyFromArray( dst, src, wOffset, hOffset, count, kind );
+cudaError_t WINAPI wine_cudaIpcOpenMemHandle(void **devPtr, cudaIpcMemHandle_t handle, unsigned int flags){
+        WINE_TRACE("\n");
+        return cudaIpcOpenMemHandle(devPtr, handle, flags);
 }
 
-cudaError_t WINAPI wine_cudaMemcpyArrayToArray( struct cudaArray *dst, size_t wOffsetDst, size_t hOffsetDst, const struct cudaArray *src, size_t wOffsetSrc, size_t hOffsetSrc, size_t count, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpyArrayToArray( dst, wOffsetDst, hOffsetDst, src, wOffsetSrc, hOffsetSrc, count, kind );
+cudaError_t WINAPI wine_cudaIpcCloseMemHandle(void *devPtr){
+        WINE_TRACE("\n");
+        return cudaIpcCloseMemHandle(devPtr);
 }
-
-cudaError_t WINAPI wine_cudaMemcpy2D( void* dst, size_t dpitch, const void* src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2D( dst, dpitch, src, spitch, width, height, kind );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy2DToArray( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2DToArray( dst, wOffset, hOffset, src, spitch, width, height, kind );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy2DFromArray( void *dst, size_t dpitch, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t width, size_t height, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2DFromArray( dst, dpitch, src, wOffset, hOffset, width, height, kind );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy2DArrayToArray( struct cudaArray *dst, size_t wOffsetDst, size_t hOffsetDst, const struct cudaArray *src, size_t wOffsetSrc, size_t hOffsetSrc, size_t width, size_t height, enum cudaMemcpyKind kind ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2DArrayToArray( dst, wOffsetDst, hOffsetDst, src, wOffsetSrc, hOffsetSrc, width, height, kind );
-}
-
-cudaError_t WINAPI wine_cudaMemcpyToSymbol( const char *symbol, const void *src, size_t count, size_t offset , enum cudaMemcpyKind kind ) {
-	WINE_TRACE("\n");
-	return cudaMemcpyToSymbol( symbol, src, count, offset, kind);
-}
-
-cudaError_t WINAPI wine_cudaMemcpyFromSymbol( void *dst, const char *symbol, size_t count, size_t offset , enum cudaMemcpyKind kind ) {
-	WINE_TRACE("\n");
-	return cudaMemcpyFromSymbol( dst, symbol, count, offset, kind );
-}
-
-/*******************************************************************************
-*                                                                              *
-*             cuda_runtime_api.h                                               *
-*                                                                              *
-*******************************************************************************/
-
-cudaError_t WINAPI wine_cudaMemcpyAsync( void *dst, const void *src, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpyAsync( dst, src, count, kind, stream );
-}
-
-cudaError_t WINAPI wine_cudaMemcpyToArrayAsync( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpyToArrayAsync( dst, wOffset, hOffset, src, count, kind, stream );\
-}
-
-cudaError_t WINAPI wine_cudaMemcpyFromArrayAsync( void *dst, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpyFromArrayAsync( dst, src, wOffset, hOffset, count, kind, stream );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy2DAsync( void *dst, size_t dpitch, const void *src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2DAsync( dst, dpitch, src, spitch, width, height, kind, stream );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy2DToArrayAsync( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2DToArrayAsync( dst, wOffset, hOffset, src, spitch, width, height, kind, stream );
-}
-
-cudaError_t WINAPI wine_cudaMemcpy2DFromArrayAsync( void *dst, size_t dpitch, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t width, size_t height, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpy2DFromArrayAsync( dst, dpitch, src, wOffset, hOffset, width, height, kind, stream );
-}
-
-cudaError_t WINAPI wine_cudaMemcpyToSymbolAsync( const char *symbol, const void *src, size_t count, size_t offset, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpyToSymbolAsync( symbol, src, count, offset, kind, stream );
-}
-
-cudaError_t WINAPI wine_cudaMemcpyFromSymbolAsync( void *dst, const char *symbol, size_t count, size_t offset, enum cudaMemcpyKind kind, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaMemcpyFromSymbolAsync( dst, symbol, count, offset, kind, stream);
-}
-
-
 
 
 /*******************************************************************************
@@ -316,15 +198,36 @@ cudaError_t WINAPI wine_cudaMemcpyFromSymbolAsync( void *dst, const char *symbol
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaMemset( void *devPtr, int value, size_t count ){
+cudaError_t WINAPI wine_cudaThreadExit( void ){
 	WINE_TRACE("\n");
-	return cudaMemset( devPtr, value, count );
+	return cudaThreadExit(  );
 }
 
-cudaError_t WINAPI wine_cudaMemset2D( void *devPtr, size_t pitch, int value, size_t width, size_t height ){
+cudaError_t WINAPI wine_cudaThreadSynchronize( void ){
 	WINE_TRACE("\n");
-	return cudaMemset2D( devPtr, pitch, value, width, height );
+	return cudaThreadSynchronize(  );
 }
+
+cudaError_t WINAPI wine_cudaThreadSetLimit(enum cudaLimit limit, size_t value){
+        WINE_TRACE("\n");
+        return cudaThreadSetLimit(limit, value);
+}
+
+cudaError_t WINAPI wine_cudaThreadGetLimit(size_t *pValue, enum cudaLimit limit){
+        WINE_TRACE("\n");
+        return cudaThreadGetLimit(pValue, limit);
+}
+
+cudaError_t WINAPI wine_cudaThreadGetCacheConfig(enum cudaFuncCache *pCacheConfig){
+        WINE_TRACE("\n");
+        return cudaThreadGetCacheConfig(pCacheConfig);
+}
+
+cudaError_t WINAPI wine_cudaThreadSetCacheConfig(enum cudaFuncCache cacheConfig){
+        WINE_TRACE("\n");
+        return cudaThreadSetCacheConfig(cacheConfig);
+}
+
 
 /*******************************************************************************
 *                                                                              *
@@ -332,15 +235,25 @@ cudaError_t WINAPI wine_cudaMemset2D( void *devPtr, size_t pitch, int value, siz
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaGetSymbolAddress( void **devPtr, const char *symbol ){
-	WINE_TRACE("\n");
-	return cudaGetSymbolAddress( devPtr, symbol );
+cudaError_t WINAPI wine_cudaGetLastError() {
+	cudaError_t err = cudaGetLastError();
+
+        WINE_TRACE("return %s\n", debug_cudaError(err));
+
+        return err;
 }
 
-cudaError_t WINAPI wine_cudaGetSymbolSize( size_t *size, const char *symbol ){
-	WINE_TRACE("\n");
-	return cudaGetSymbolSize( size, symbol );
+cudaError_t WINAPI wine_cudaPeekAtLastError(void){
+        WINE_TRACE("\n");
+        return cudaPeekAtLastError();
 }
+
+
+const char* WINAPI wine_cudaGetErrorString(cudaError_t error) {
+	WINE_TRACE("\n");
+	return cudaGetErrorString(error);
+}
+
 
 /*******************************************************************************
 *                                                                              *
@@ -373,7 +286,6 @@ cudaError_t WINAPI wine_cudaGetDevice( int* device ){
 	return cudaGetDevice( device );
 }
 
-
 cudaError_t WINAPI wine_cudaSetValidDevices( int *device_arr, int len ){
 	WINE_TRACE("\n");
 	return cudaSetValidDevices( device_arr, len);
@@ -384,41 +296,6 @@ cudaError_t WINAPI wine_cudaSetDeviceFlags( int flags ){
 	return cudaSetDeviceFlags( flags );
 }
 
-/*******************************************************************************
-*                                                                              *
-*             cuda_runtime_api.h                                               *
-*                                                                              *
-*******************************************************************************/
-
-cudaError_t WINAPI wine_cudaBindTexture( size_t *offset, const struct textureReference *texref, const void *devPtr, const struct cudaChannelFormatDesc *desc, size_t size ){
-	WINE_TRACE("\n");
-	return cudaBindTexture( offset, texref, devPtr, desc, size );
-}
-
-cudaError_t WINAPI wine_cudaBindTexture2D( size_t *offset,const struct textureReference *texref,const void *devPtr, const struct cudaChannelFormatDesc *desc,size_t width, size_t height, size_t pitch ){
-	WINE_TRACE("\n");
-	return cudaBindTexture2D( offset, texref, devPtr, desc, width, height, pitch );
-}
-
-cudaError_t WINAPI wine_cudaBindTextureToArray( const struct textureReference *texref, const struct cudaArray *array, const struct cudaChannelFormatDesc *desc ){
-	WINE_TRACE("\n");
-	return cudaBindTextureToArray( texref, array, desc );
-}
-
-cudaError_t WINAPI wine_cudaUnbindTexture( const struct textureReference *texRef ){
-	WINE_TRACE("\n");
-	return cudaUnbindTexture( texRef );
-}
-
-cudaError_t WINAPI wine_cudaGetTextureAlignmentOffset( size_t *offset, const struct textureReference *texRef ){
-	WINE_TRACE("\n");
-	return cudaGetTextureAlignmentOffset( offset, texRef );
-}
-
-cudaError_t WINAPI wine_cudaGetTextureReference( const struct textureReference **texref, const char *symbol ){
-	WINE_TRACE("\n");
-	return cudaGetTextureReference( texref, symbol );
-}
 
 /*******************************************************************************
 *                                                                              *
@@ -426,15 +303,31 @@ cudaError_t WINAPI wine_cudaGetTextureReference( const struct textureReference *
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaGetChannelDesc( struct cudaChannelFormatDesc *desc, const struct cudaArray *array ){
+cudaError_t WINAPI wine_cudaStreamCreate( cudaStream_t *pStream ){
 	WINE_TRACE("\n");
-	return cudaGetChannelDesc( desc, array );
+	return cudaStreamCreate( pStream );
 }
 
-struct cudaChannelFormatDesc WINAPI wine_cudaCreateChannelDesc(int x, int y, int z, int w, enum cudaChannelFormatKind f){
+cudaError_t WINAPI wine_cudaStreamDestroy( cudaStream_t stream ){
 	WINE_TRACE("\n");
-	return cudaCreateChannelDesc(x, y, z, w, f);
+	return cudaStreamDestroy( stream );
 }
+
+cudaError_t WINAPI wine_cudaStreamWaitEvent(cudaStream_t stream, cudaEvent_t event, unsigned int flags){
+        WINE_TRACE("\n");
+        return cudaStreamWaitEvent(stream, event, flags);
+}
+
+cudaError_t WINAPI wine_cudaStreamSynchronize( cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaStreamSynchronize( stream );
+}
+
+cudaError_t WINAPI wine_cudaStreamQuery(cudaStream_t stream){
+	WINE_TRACE("\n");
+	return cudaStreamQuery( stream );
+}
+
 
 /*******************************************************************************
 *                                                                              *
@@ -442,19 +335,41 @@ struct cudaChannelFormatDesc WINAPI wine_cudaCreateChannelDesc(int x, int y, int
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaGetLastError() {
-	cudaError_t err = cudaGetLastError();
-
-        WINE_TRACE("return %s\n", debug_cudaError(err));
-
-        return err;
+cudaError_t WINAPI wine_cudaEventCreate( cudaEvent_t *event ){
+	WINE_TRACE("\n");
+	return cudaEventCreate( event );
 }
 
-
-const char* WINAPI wine_cudaGetErrorString(cudaError_t error) {
+cudaError_t WINAPI wine_cudaEventCreateWithFlags( cudaEvent_t *event, int flags ){
 	WINE_TRACE("\n");
-	return cudaGetErrorString(error);
-    }
+	return cudaEventCreateWithFlags( event, flags );
+}
+
+cudaError_t WINAPI wine_cudaEventRecord( cudaEvent_t event, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaEventRecord( event, stream );
+}
+
+cudaError_t WINAPI wine_cudaEventQuery( cudaEvent_t event ){
+	WINE_TRACE("\n");
+	return cudaEventQuery( event );
+}
+
+cudaError_t WINAPI wine_cudaEventSynchronize( cudaEvent_t event ){
+	WINE_TRACE("\n");
+	return cudaEventSynchronize( event );
+}
+
+cudaError_t WINAPI wine_cudaEventDestroy( cudaEvent_t event ){
+	WINE_TRACE("\n");
+	return cudaEventDestroy( event );
+}
+
+cudaError_t WINAPI wine_cudaEventElapsedTime( float *ms, cudaEvent_t start, cudaEvent_t end ){
+	WINE_TRACE("\n");
+	return cudaEventElapsedTime( ms, start, end );
+}
+
 
 /*******************************************************************************
 *                                                                              *
@@ -475,6 +390,11 @@ cudaError_t WINAPI wine_cudaSetupArgument( const void *arg, size_t size, size_t 
 cudaError_t WINAPI wine_cudaFuncSetCacheConfig( const char *func, enum cudaFuncCache cacheConfig ){
 	WINE_TRACE("\n");
 	return cudaFuncSetCacheConfig( func, cacheConfig );
+}
+
+cudaError_t WINAPI wine_cudaFuncSetSharedMemConfig(const char *func, enum cudaSharedMemConfig config){
+        WINE_TRACE("\n");
+        return cudaFuncSetSharedMemConfig(func, config);
 }
 
 cudaError_t WINAPI wine_cudaLaunch(const char *entry) {
@@ -557,73 +477,6 @@ cudaError_t WINAPI wine_cudaFuncGetAttributes( struct cudaFuncAttributes *attr, 
 	return cudaFuncGetAttributes( attr, func );
 }
 
-/*******************************************************************************
-*                                                                              *
-*             cuda_runtime_api.h                                               *
-*                                                                              *
-*******************************************************************************/
-
-cudaError_t WINAPI wine_cudaStreamCreate( cudaStream_t *pStream ){
-	WINE_TRACE("\n");
-	return cudaStreamCreate( pStream );
-}
-
-cudaError_t WINAPI wine_cudaStreamDestroy( cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaStreamDestroy( stream );
-}
-
-cudaError_t WINAPI wine_cudaStreamSynchronize( cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaStreamSynchronize( stream );
-}
-
-
-cudaError_t WINAPI wine_cudaStreamQuery(cudaStream_t stream){
-	WINE_TRACE("\n");
-	return cudaStreamQuery( stream );
-}
-
-/*******************************************************************************
-*                                                                              *
-*             cuda_runtime_api.h                                               *
-*                                                                              *
-*******************************************************************************/
-
-cudaError_t WINAPI wine_cudaEventCreate( cudaEvent_t *event ){
-	WINE_TRACE("\n");
-	return cudaEventCreate( event );
-}
-
-cudaError_t WINAPI wine_cudaEventCreateWithFlags( cudaEvent_t *event, int flags ){
-	WINE_TRACE("\n");
-	return cudaEventCreateWithFlags( event, flags );
-}
-
-cudaError_t WINAPI wine_cudaEventRecord( cudaEvent_t event, cudaStream_t stream ){
-	WINE_TRACE("\n");
-	return cudaEventRecord( event, stream );
-}
-
-cudaError_t WINAPI wine_cudaEventQuery( cudaEvent_t event ){
-	WINE_TRACE("\n");
-	return cudaEventQuery( event );
-}
-
-cudaError_t WINAPI wine_cudaEventSynchronize( cudaEvent_t event ){
-	WINE_TRACE("\n");
-	return cudaEventSynchronize( event );
-}
-
-cudaError_t WINAPI wine_cudaEventDestroy( cudaEvent_t event ){
-	WINE_TRACE("\n");
-	return cudaEventDestroy( event );
-}
-
-cudaError_t WINAPI wine_cudaEventElapsedTime( float *ms, cudaEvent_t start, cudaEvent_t end ){
-	WINE_TRACE("\n");
-	return cudaEventElapsedTime( ms, start, end );
-}
 
 /*******************************************************************************
 *                                                                              *
@@ -641,21 +494,6 @@ cudaError_t WINAPI wine_cudaSetDoubleForHost( double *d ){
 	return cudaSetDoubleForHost( d );
 }
 
-/*******************************************************************************
-*                                                                              *
-*             cuda_runtime_api.h                                               *
-*                                                                              *
-*******************************************************************************/
-
-cudaError_t WINAPI wine_cudaThreadExit( void ){
-	WINE_TRACE("\n");
-	return cudaThreadExit(  );
-}
-
-cudaError_t WINAPI wine_cudaThreadSynchronize( void ){
-	WINE_TRACE("\n");
-	return cudaThreadSynchronize(  );
-}
 
 /*******************************************************************************
 *                                                                              *
@@ -663,15 +501,311 @@ cudaError_t WINAPI wine_cudaThreadSynchronize( void ){
 *                                                                              *
 *******************************************************************************/
 
-cudaError_t WINAPI wine_cudaDriverGetVersion( int *driverVersion ){
-	WINE_TRACE("\n");
-	return cudaDriverGetVersion( driverVersion );
+cudaError_t WINAPI wine_cudaMalloc(void **devPtr, size_t size) {
+        WINE_TRACE("\n");
+	return cudaMalloc(devPtr, size);
 }
 
-cudaError_t WINAPI wine_cudaRuntimeGetVersion( int *runtimeVersion ){
+cudaError_t WINAPI wine_cudaMallocHost( void** hostPtr, size_t size ){
 	WINE_TRACE("\n");
-	return cudaRuntimeGetVersion( runtimeVersion );
+	return cudaMallocHost( hostPtr, size);
 }
+
+cudaError_t WINAPI wine_cudaMallocPitch( void** devPtr, size_t* pitch, size_t widthInBytes, size_t height ){
+	WINE_TRACE("\n");
+	return cudaMallocPitch( devPtr, pitch, widthInBytes, height );
+}
+
+cudaError_t WINAPI wine_cudaMallocArray( struct cudaArray** array, const struct cudaChannelFormatDesc* desc, size_t width, size_t height ){
+	WINE_TRACE("\n");
+	return cudaMallocArray( array, desc, width, height);
+}
+
+
+cudaError_t WINAPI wine_cudaFree(void *devPtr) {
+        WINE_TRACE("\n");
+	return cudaFree(devPtr);
+}
+
+cudaError_t WINAPI wine_cudaFreeHost( void* hostPtr ){
+	WINE_TRACE("\n");
+	return cudaFreeHost( hostPtr);
+}
+
+cudaError_t WINAPI wine_cudaFreeArray( struct cudaArray* array ){
+	WINE_TRACE("\n");
+	return cudaFreeArray( array );
+}
+
+cudaError_t WINAPI wine_cudaHostAlloc(void **pHost, size_t bytes, unsigned int flags){
+	WINE_TRACE("\n");
+	return cudaHostAlloc( pHost, bytes, flags );
+}
+
+cudaError_t WINAPI wine_cudaHostRegister(void *ptr, size_t size, unsigned int flags){
+        WINE_TRACE("\n");
+        return cudaHostRegister(ptr, size, flags);
+}
+
+cudaError_t WINAPI wine_cudaHostUnregister(void *ptr){
+        WINE_TRACE("\n");
+        return cudaHostUnregister(ptr);
+}
+
+cudaError_t WINAPI wine_cudaHostGetDevicePointer(void **pDevice, void *pHost, unsigned int flags){
+	WINE_TRACE("\n");
+	return cudaHostGetDevicePointer( pDevice, pHost, flags );
+}
+
+cudaError_t WINAPI wine_cudaHostGetFlags(unsigned int *pFlags, void *pHost){
+	WINE_TRACE("\n");
+	return cudaHostGetFlags( pFlags, pHost );
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaMalloc3D( struct cudaPitchedPtr* pitchDevPtr, struct cudaExtent extent ){
+        WINE_TRACE("\n");
+	return cudaMalloc3D( pitchDevPtr, extent );
+}
+
+
+cudaError_t WINAPI wine_cudaMalloc3DArray( struct cudaArray** arrayPtr, const struct cudaChannelFormatDesc* desc, struct cudaExtent extent ){
+        WINE_TRACE("\n");
+	return cudaMalloc3DArray( arrayPtr, desc, extent );
+}
+
+
+cudaError_t WINAPI wine_cudaMemcpy3D( const struct cudaMemcpy3DParms *p ){
+        WINE_TRACE("\n");
+	return cudaMemcpy3D( p );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy3DPeer(const struct cudaMemcpy3DPeerParms *p){
+        WINE_TRACE("\n");
+        return cudaMemcpy3DPeer(p);
+}
+
+cudaError_t WINAPI wine_cudaMemcpy3DAsync( const struct cudaMemcpy3DParms *p, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpy3DAsync( p, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy3DPeerAsync(const struct cudaMemcpy3DPeerParms *p, cudaStream_t stream){
+        WINE_TRACE("\n");
+        return cudaMemcpy3DPeerAsync(p, stream);
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaMemGetInfo(size_t *free, size_t *total){
+	WINE_TRACE("\n");
+	return cudaMemGetInfo( free, total );
+}
+
+cudaError_t WINAPI wine_cudaArrayGetInfo(struct cudaChannelFormatDesc *desc, struct cudaExtent *extent, unsigned int *flags, struct cudaArray *array){
+        WINE_TRACE("\n");
+        return cudaArrayGetInfo(desc, extent, flags, array);
+}
+
+cudaError_t WINAPI wine_cudaMemcpy(void *dst, const void *src, size_t count, enum cudaMemcpyKind kind) {
+        WINE_TRACE("\n");
+	return cudaMemcpy(dst, src, count, kind);
+}
+
+cudaError_t WINAPI wine_cudaMemcpyPeer(void *dst, int dstDevice, const void *src, int srcDevice, size_t count){
+        WINE_TRACE("\n");
+        return cudaMemcpyPeer(dst, dstDevice, src, srcDevice, count);
+}
+
+cudaError_t WINAPI wine_cudaMemcpyToArray( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t count, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpyToArray( dst, wOffset, hOffset, src, count, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpyFromArray( void *dst, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t count, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpyFromArray( dst, src, wOffset, hOffset, count, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpyArrayToArray( struct cudaArray *dst, size_t wOffsetDst, size_t hOffsetDst, const struct cudaArray *src, size_t wOffsetSrc, size_t hOffsetSrc, size_t count, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpyArrayToArray( dst, wOffsetDst, hOffsetDst, src, wOffsetSrc, hOffsetSrc, count, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2D( void* dst, size_t dpitch, const void* src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2D( dst, dpitch, src, spitch, width, height, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2DToArray( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2DToArray( dst, wOffset, hOffset, src, spitch, width, height, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2DFromArray( void *dst, size_t dpitch, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t width, size_t height, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2DFromArray( dst, dpitch, src, wOffset, hOffset, width, height, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2DArrayToArray( struct cudaArray *dst, size_t wOffsetDst, size_t hOffsetDst, const struct cudaArray *src, size_t wOffsetSrc, size_t hOffsetSrc, size_t width, size_t height, enum cudaMemcpyKind kind ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2DArrayToArray( dst, wOffsetDst, hOffsetDst, src, wOffsetSrc, hOffsetSrc, width, height, kind );
+}
+
+cudaError_t WINAPI wine_cudaMemcpyToSymbol( const char *symbol, const void *src, size_t count, size_t offset , enum cudaMemcpyKind kind ) {
+	WINE_TRACE("\n");
+	return cudaMemcpyToSymbol( symbol, src, count, offset, kind);
+}
+
+cudaError_t WINAPI wine_cudaMemcpyFromSymbol( void *dst, const char *symbol, size_t count, size_t offset , enum cudaMemcpyKind kind ) {
+	WINE_TRACE("\n");
+	return cudaMemcpyFromSymbol( dst, symbol, count, offset, kind );
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaMemcpyAsync( void *dst, const void *src, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpyAsync( dst, src, count, kind, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpyPeerAsync(void *dst, int dstDevice, const void *src, int srcDevice, size_t count, cudaStream_t stream){
+        WINE_TRACE("\n");
+        return cudaMemcpyPeerAsync(dst, dstDevice, src, srcDevice, count, stream);
+}
+
+cudaError_t WINAPI wine_cudaMemcpyToArrayAsync( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpyToArrayAsync( dst, wOffset, hOffset, src, count, kind, stream );\
+}
+
+cudaError_t WINAPI wine_cudaMemcpyFromArrayAsync( void *dst, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t count, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpyFromArrayAsync( dst, src, wOffset, hOffset, count, kind, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2DAsync( void *dst, size_t dpitch, const void *src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2DAsync( dst, dpitch, src, spitch, width, height, kind, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2DToArrayAsync( struct cudaArray *dst, size_t wOffset, size_t hOffset, const void *src, size_t spitch, size_t width, size_t height, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2DToArrayAsync( dst, wOffset, hOffset, src, spitch, width, height, kind, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpy2DFromArrayAsync( void *dst, size_t dpitch, const struct cudaArray *src, size_t wOffset, size_t hOffset, size_t width, size_t height, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpy2DFromArrayAsync( dst, dpitch, src, wOffset, hOffset, width, height, kind, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpyToSymbolAsync( const char *symbol, const void *src, size_t count, size_t offset, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpyToSymbolAsync( symbol, src, count, offset, kind, stream );
+}
+
+cudaError_t WINAPI wine_cudaMemcpyFromSymbolAsync( void *dst, const char *symbol, size_t count, size_t offset, enum cudaMemcpyKind kind, cudaStream_t stream ){
+	WINE_TRACE("\n");
+	return cudaMemcpyFromSymbolAsync( dst, symbol, count, offset, kind, stream);
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaMemset( void *devPtr, int value, size_t count ){
+	WINE_TRACE("\n");
+	return cudaMemset( devPtr, value, count );
+}
+
+cudaError_t WINAPI wine_cudaMemset2D( void *devPtr, size_t pitch, int value, size_t width, size_t height ){
+	WINE_TRACE("\n");
+	return cudaMemset2D( devPtr, pitch, value, width, height );
+}
+
+cudaError_t WINAPI wine_cudaMemset3D( struct cudaPitchedPtr pitchedDevPtr, int value, struct cudaExtent extent ){
+	WINE_TRACE("\n");
+	return cudaMemset3D( pitchedDevPtr, value, extent );
+}
+
+cudaError_t WINAPI wine_cudaMemsetAsync(void *devPtr, int value, size_t count, cudaStream_t stream){
+        WINE_TRACE("\n");
+        return cudaMemsetAsync(devPtr, value, count, stream);
+}
+
+cudaError_t WINAPI wine_cudaMemset2DAsync(void *devPtr, size_t pitch, int value, size_t width, size_t height, cudaStream_t stream){
+        WINE_TRACE("\n");
+        return cudaMemset2DAsync(devPtr, pitch, value, width, height, stream);
+}
+
+cudaError_t WINAPI wine_cudaMemset3DAsync(struct cudaPitchedPtr pitchedDevPtr, int value, struct cudaExtent extent, cudaStream_t stream){
+        WINE_TRACE("\n");
+        return cudaMemset3DAsync(pitchedDevPtr, value, extent, stream);
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaGetSymbolAddress( void **devPtr, const char *symbol ){
+	WINE_TRACE("\n");
+	return cudaGetSymbolAddress( devPtr, symbol );
+}
+
+cudaError_t WINAPI wine_cudaGetSymbolSize( size_t *size, const char *symbol ){
+	WINE_TRACE("\n");
+	return cudaGetSymbolSize( size, symbol );
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaPointerGetAttributes(struct cudaPointerAttributes *attributes, const void *ptr){
+        WINE_TRACE("\n");
+        return cudaPointerGetAttributes(attributes, ptr);
+}
+
+cudaError_t WINAPI wine_cudaDeviceCanAccessPeer(int *canAccessPeer, int device, int peerDevice){
+        WINE_TRACE("\n");
+        return cudaDeviceCanAccessPeer(canAccessPeer, device, peerDevice);
+}
+
+cudaError_t WINAPI wine_cudaDeviceEnablePeerAccess(int peerDevice, unsigned int flags){
+        WINE_TRACE("\n");
+        return cudaDeviceEnablePeerAccess(peerDevice, flags);
+}
+
+cudaError_t WINAPI wine_cudaDeviceDisablePeerAccess(int peerDevice){
+        WINE_TRACE("\n");
+        return cudaDeviceDisablePeerAccess(peerDevice);
+}
+
 
 /*******************************************************************************
 *                                                                              *
@@ -709,12 +843,105 @@ cudaError_t WINAPI wine_cudaGraphicsSubResourceGetMappedArray( struct cudaArray 
 	return cudaGraphicsSubResourceGetMappedArray( arrayPtr, resource, arrayIndex, mipLevel );
 }
 
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaGetChannelDesc( struct cudaChannelFormatDesc *desc, const struct cudaArray *array ){
+	WINE_TRACE("\n");
+	return cudaGetChannelDesc( desc, array );
+}
+
+struct cudaChannelFormatDesc WINAPI wine_cudaCreateChannelDesc(int x, int y, int z, int w, enum cudaChannelFormatKind f){
+	WINE_TRACE("\n");
+	return cudaCreateChannelDesc(x, y, z, w, f);
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaBindTexture( size_t *offset, const struct textureReference *texref, const void *devPtr, const struct cudaChannelFormatDesc *desc, size_t size ){
+	WINE_TRACE("\n");
+	return cudaBindTexture( offset, texref, devPtr, desc, size );
+}
+
+cudaError_t WINAPI wine_cudaBindTexture2D( size_t *offset,const struct textureReference *texref,const void *devPtr, const struct cudaChannelFormatDesc *desc,size_t width, size_t height, size_t pitch ){
+	WINE_TRACE("\n");
+	return cudaBindTexture2D( offset, texref, devPtr, desc, width, height, pitch );
+}
+
+cudaError_t WINAPI wine_cudaBindTextureToArray( const struct textureReference *texref, const struct cudaArray *array, const struct cudaChannelFormatDesc *desc ){
+	WINE_TRACE("\n");
+	return cudaBindTextureToArray( texref, array, desc );
+}
+
+cudaError_t WINAPI wine_cudaUnbindTexture( const struct textureReference *texRef ){
+	WINE_TRACE("\n");
+	return cudaUnbindTexture( texRef );
+}
+
+cudaError_t WINAPI wine_cudaGetTextureAlignmentOffset( size_t *offset, const struct textureReference *texRef ){
+	WINE_TRACE("\n");
+	return cudaGetTextureAlignmentOffset( offset, texRef );
+}
+
+cudaError_t WINAPI wine_cudaGetTextureReference( const struct textureReference **texref, const char *symbol ){
+	WINE_TRACE("\n");
+	return cudaGetTextureReference( texref, symbol );
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaBindSurfaceToArray(const struct surfaceReference *surfref, const struct cudaArray *array, const struct cudaChannelFormatDesc *desc){
+        WINE_TRACE("\n");
+        return cudaBindSurfaceToArray(surfref, array, desc);
+}
+
+cudaError_t WINAPI wine_cudaGetSurfaceReference(const struct surfaceReference **surfref, const char *symbol){
+        WINE_TRACE("\n");
+        return cudaGetSurfaceReference(surfref, symbol);
+}
+
+
+/*******************************************************************************
+*                                                                              *
+*             cuda_runtime_api.h                                               *
+*                                                                              *
+*******************************************************************************/
+
+cudaError_t WINAPI wine_cudaDriverGetVersion( int *driverVersion ){
+	WINE_TRACE("\n");
+	return cudaDriverGetVersion( driverVersion );
+}
+
+cudaError_t WINAPI wine_cudaRuntimeGetVersion( int *runtimeVersion ){
+	WINE_TRACE("\n");
+	return cudaRuntimeGetVersion( runtimeVersion );
+}
+
+cudaError_t WINAPI wine_cudaGetExportTable(const void **ppExportTable, const cudaUUID_t *pExportTableId){
+        WINE_TRACE("\n");
+        return cudaGetExportTable(ppExportTable, pExportTableId);
+}
+
+
 /*******************************************************************************
 *                                                                              *
 *                  cuda_gl_interop.h                                           *
 *                                                                              *
 *******************************************************************************/
-
 
 cudaError_t WINAPI wine_cudaGLSetGLDevice(int device){
 	WINE_TRACE("\n");
@@ -735,6 +962,7 @@ cudaError_t WINAPI wine_cudaGraphicsGLRegisterBuffer( struct cudaGraphicsResourc
 	WINE_TRACE("\n");
 	return cudaWGLGetDevice( device, hGpu );
 }*/
+
 
 /*******************************************************************************
 *                                                                              *
@@ -777,6 +1005,7 @@ cudaError_t WINAPI wine_cudaGLUnmapBufferObjectAsync( GLuint bufObj, cudaStream_
 	WINE_TRACE("\n");
 	return cudaGLUnmapBufferObjectAsync( bufObj, stream );
 }
+
 
 /*******************************************************************************
 *                                                                              *
@@ -821,6 +1050,7 @@ void WINAPI wine_cudaRegisterFunction( void **fatCubinHandle, const char *hostFu
 	return __cudaRegisterFunction( fatCubinHandle, hostFun, deviceFun, deviceName, thread_limit, tid, bid, bDim, gDim, wSize );
     }
 
+
 /*******************************************************************************
 *                                                                              *
 *               device_functions.h                                             *
@@ -843,6 +1073,7 @@ void WINAPI wine_cudaTextureFetch( const void *tex, void *index, int integer, vo
 	WINE_TRACE("\n");
 	return __cudaTextureFetch( tex, index, integer, val );
 }
+
 
 /*******************************************************************************
 *                                                                              *
