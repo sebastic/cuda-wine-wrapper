@@ -1,4 +1,4 @@
-/*This is a wrapper for cufft32_30_14.dll and libcufft.so.3.0.14
+/*This is a wrapper for cufft32_42_9.dll and libcufft.so.4.2.9
  Copyrighted by Seth Shelnutt under the LGPL v2.1 or later
  */
 
