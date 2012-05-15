@@ -29,7 +29,7 @@ cudart_dll_CXX_SRCS   =
 cudart_dll_RC_SRCS    =
 cudart_dll_LDFLAGS    = -shared \
 			$(cudart_dll_MODULE:%=%.spec) \
-			-mno-cygwin
+			-mno-cygwin -m32
 cudart_dll_DLL_PATH   =
 cudart_dll_DLLS       = odbc32 \
 			ole32 \
