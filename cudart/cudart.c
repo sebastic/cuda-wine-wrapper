@@ -12,6 +12,7 @@
 #include "cuda_gl_interop.h"
 #include "driver_functions.h"
 #include "driver_types.h"
+#include "surface_types.h"
 //#include "math_functions.h"
 #include <stdlib.h>
 #include <time.h>
@@ -68,7 +69,33 @@ WINE_DEFAULT_DEBUG_CHANNEL(cuda);
         "cudaErrorNotYetImplemented",
         "cudaErrorMemoryValueTooLarge",
         "cudaErrorInvalidResourceHandle",
-        "cudaErrorNotReady"
+        "cudaErrorNotReady",
+        "cudaErrorInsufficientDriver",
+        "cudaErrorSetOnActiveProcess",
+        "cudaErrorNoDevice",
+        "cudaErrorECCUncorrectable",
+        "cudaErrorSharedObjectSymbolNotFound",
+        "cudaErrorSharedObjectInitFailed",
+        "cudaErrorUnsupportedLimit",
+        "cudaErrorDuplicateVariableName",
+        "cudaErrorDuplicateTextureName",
+        "cudaErrorDuplicateSurfaceName",
+        "cudaErrorDevicesUnavailable",
+        "cudaErrorInvalidKernelImage",
+        "cudaErrorNoKernelImageForDevice",
+        "cudaErrorIncompatibleDriverContext",
+        "cudaErrorPeerAccessAlreadyEnabled",
+        "cudaErrorPeerAccessNotEnabled",
+        "cudaErrorDeviceAlreadyInUse",
+        "cudaErrorProfilerDisabled",
+        "cudaErrorProfilerNotInitialized",
+        "cudaErrorProfilerAlreadyStarted",
+        "cudaErrorProfilerAlreadyStopped",
+        "cudaErrorAssert",
+        "cudaErrorTooManyPeers",
+        "cudaErrorHostMemoryAlreadyRegistered",
+        "cudaErrorHostMemoryNotRegistered",
+        "cudaErrorOperatingSystem"
     };
 
 static const char* debug_cudaError(cudaError_t err) {
