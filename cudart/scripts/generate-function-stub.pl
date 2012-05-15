@@ -159,7 +159,7 @@ sub generate_function {
 			my $prototype = $1;
 			my $parameter = $2;
 
-			if($prototype =~ s/ __dv\(0\)//g){}
+			if($prototype =~ s/ __dv\(\w+\)//g){}
 
 			my $return = $function.'(';
 			my $args   = '';
@@ -170,7 +170,7 @@ sub generate_function {
 			foreach my $param (@params) {
 				my @words = split / /, $param;
 
-				pop @words if($words[-1] eq '__dv(0)');
+				pop @words if($words[-1] =~ /__dv(\w+)/);
 
 				last if($words[-1] eq 'void' && $#params == 0);
 
