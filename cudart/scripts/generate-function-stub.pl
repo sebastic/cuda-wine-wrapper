@@ -159,6 +159,8 @@ sub generate_function {
 			my $prototype = $1;
 			my $parameter = $2;
 
+			if($prototype =~ s/ __dv\(0\)//g){}
+
 			my $return = $function.'(';
 			my $args   = '';
 
