@@ -944,19 +944,24 @@ cudaError_t WINAPI wine_cudaGetExportTable(const void **ppExportTable, const cud
 *                                                                              *
 *******************************************************************************/
 
+cudaError_t WINAPI wine_cudaGLGetDevices(unsigned int *pCudaDeviceCount, int *pCudaDevices, unsigned int cudaDeviceCount, enum cudaGLDeviceList deviceList){
+	WINE_TRACE("\n");
+	return cudaGLGetDevices( pCudaDeviceCount, pCudaDevices, cudaDeviceCount, deviceList );
+}
+
 cudaError_t WINAPI wine_cudaGLSetGLDevice(int device){
 	WINE_TRACE("\n");
 	return cudaGLSetGLDevice( device );
 }
 
-cudaError_t WINAPI wine_cudaGraphicsGLRegisterImage( struct cudaGraphicsResource **resource, GLuint image, GLenum target, unsigned int Flags ){
+cudaError_t WINAPI wine_cudaGraphicsGLRegisterImage( struct cudaGraphicsResource **resource, GLuint image, GLenum target, unsigned int flags ){
 	WINE_TRACE("\n");
-	return cudaGraphicsGLRegisterImage( resource, image, target, Flags );
+	return cudaGraphicsGLRegisterImage( resource, image, target, flags );
 }
 
-cudaError_t WINAPI wine_cudaGraphicsGLRegisterBuffer( struct cudaGraphicsResource **resource, GLuint buffer, unsigned int Flags ){
+cudaError_t WINAPI wine_cudaGraphicsGLRegisterBuffer( struct cudaGraphicsResource **resource, GLuint buffer, unsigned int flags ){
 	WINE_TRACE("\n");
-	return cudaGraphicsGLRegisterBuffer( resource, buffer, Flags );
+	return cudaGraphicsGLRegisterBuffer( resource, buffer, flags );
 }
 
 /*cudaError_t WINAPI wine_cudaWGLGetDevice( int *device, HGPUNV hGpu ){
