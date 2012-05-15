@@ -25,6 +25,8 @@ my $result = GetOptions(
 			 'f|function=s@' => \@{$cfg{functions}},
 			 'F|file=s'      => \$cfg{file},
 			 'i|include=s'   => \$cfg{include},
+
+			 'w|write'       => \$cfg{write},
 			 'c|code=s'      => \$cfg{code},
 			 's|spec=s'      => \$cfg{spec},
 
