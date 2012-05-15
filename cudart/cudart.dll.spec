@@ -152,7 +152,6 @@
 @  stdcall cudaFuncSetSharedMemConfig( ptr long ) wine_cudaFuncSetSharedMemConfig
 @  stdcall cudaHostRegister( ptr long long ) wine_cudaHostRegister
 @  stdcall cudaHostUnregister( ptr ) wine_cudaHostUnregister
-@  stdcall cudaHostGetDevicePointer( ptr ptr long ) wine_cudaHostGetDevicePointer
 @  stdcall cudaMemcpy3DPeer( ptr ) wine_cudaMemcpy3DPeer
 @  stdcall cudaMemcpy3DPeerAsync( ptr long ) wine_cudaMemcpy3DPeerAsync
 @  stdcall cudaArrayGetInfo( ptr ptr ptr ptr ) wine_cudaArrayGetInfo
