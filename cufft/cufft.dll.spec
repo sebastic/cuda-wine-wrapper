@@ -22,3 +22,5 @@
 @ stdcall cufftExecD2Z( long ptr ptr ) wine_cufftExecD2Z
 @ stdcall cufftExecZ2D( long ptr ptr ) wine_cufftExecZ2D
 @ stdcall cufftSetStream( long long ) wine_cufftSetStream
+@ stdcall cufftSetCompatibilityMode( long long ) wine_cufftSetCompatibilityMode
+@ stdcall cufftGetVersion( long ) wine_cufftGetVersion

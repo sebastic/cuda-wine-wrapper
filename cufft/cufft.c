@@ -76,3 +76,14 @@ cufftResult WINAPI wine_cufftSetStream( cufftHandle plan, cudaStream_t stream ){
 	WINE_TRACE("\n");
 	return cufftSetStream( plan, stream );
 }
+
+cufftResult WINAPI wine_cufftSetCompatibilityMode( cufftHandle plan, cufftCompatibility mode ){
+	WINE_TRACE("\n");
+	return cufftSetCompatibilityMode( plan, mode );
+}
+
+cufftResult WINAPI wine_cufftGetVersion( int *version ){
+	WINE_TRACE("\n");
+	return cufftGetVersion( version );
+}
+

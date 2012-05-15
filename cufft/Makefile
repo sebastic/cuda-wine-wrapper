@@ -29,7 +29,7 @@ cufft_dll_CXX_SRCS    =
 cufft_dll_RC_SRCS     =
 cufft_dll_LDFLAGS     = -shared \
 			$(cufft_dll_MODULE:%=%.spec) \
-			-mno-cygwin
+			-mno-cygwin -m32
 cufft_dll_DLL_PATH    =
 cufft_dll_DLLS        = odbc32 \
 			ole32 \
