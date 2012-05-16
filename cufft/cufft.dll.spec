@@ -3,7 +3,7 @@
 #
 # Copyrighted by Seth Shelnutt under the LGPL v2.1 or later
 #
-# Wine spec file for the cudart.dll built-in library (a minimal wrapper around the
+# Wine spec file for the cufft.dll built-in library (a minimal wrapper around the
 # linux library libcufft.so)
 #
 # For further details of wine spec files see the Winelib documentation at
